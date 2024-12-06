@@ -1,3 +1,3 @@
 <template>
-  <div>welcome to bite of china!</div>
+  <HomePage />
 </template>

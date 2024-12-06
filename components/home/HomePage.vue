@@ -22,6 +22,8 @@
 <style lang="scss" scoped>
 .page-top {
   position: relative;
+  max-width: 2110px;
+  margin: 0 auto;
 }
 
 .page-search {
@@ -29,6 +31,8 @@
 }
 
 .page-content {
+  max-width: 1440px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 60px;
