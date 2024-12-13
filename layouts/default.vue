@@ -1,8 +1,13 @@
 <template>
   <main id="main-app">
     <slot />
+    <SpeedInsights />
   </main>
 </template>
+
+<script setup>
+import { SpeedInsights } from '@vercel/speed-insights/nuxt';
+</script>
 
 <style lang="scss">
 /* Box sizing rules */
