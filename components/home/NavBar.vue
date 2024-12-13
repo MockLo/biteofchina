@@ -1,16 +1,25 @@
-<script setup></script>
+<script setup>
+import { NIcon, NTooltip } from 'naive-ui';
+import { LanguageOutlined, FileUploadOutlined, AccountCircleOutlined } from '@vicons/material';
+</script>
 
 <template>
   <nav class="home-nav-bar">
-    <img class="nav-logo" src="./images//boc-logo.jpg" />
+    <img class="nav-logo" src="./images/boc-logo.png" />
     <div class="sub-menus">
-      <div class="sub-menu">Activity</div>
+      <div class="sub-menu">Activities</div>
       <div class="sub-menu">Inspiration</div>
-      <div class="sub-menu">Assistant</div>
-      <div class="sub-menu">Contact us</div>
-      <div class="person">
-        <img src="./images/line-md_person.svg" />
-      </div>
+      <div class="sub-menu">AI Assistant</div>
+    </div>
+    <div class="right-btns">
+      <NIcon size="28" :component="LanguageOutlined" />
+      <NTooltip>
+        <template #trigger>
+          <NIcon size="28" :component="FileUploadOutlined" />
+        </template>
+        Submit Your Product
+      </NTooltip>
+      <NIcon size="28" :component="AccountCircleOutlined" />
     </div>
   </nav>
 </template>
@@ -25,14 +34,13 @@
   background-color: rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 32px;
   z-index: 2;
 }
 
 .nav-logo {
   width: auto;
-  height: 100%;
+  height: 46px;
 }
 
 .sub-menus {
@@ -40,6 +48,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 56px;
+  margin-left: auto;
 }
 
 .sub-menu {
@@ -49,16 +58,25 @@
   cursor: pointer;
   transition: all ease 200ms;
 
-  /* &:hover {
-    color: #06f;
-  } */
+  &:hover {
+    color: #fff;
+  }
 }
 
-.person {
-  cursor: pointer;
+.right-btns {
+  margin-left: 124px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 
-  /* &:hover {
-    color: #06f;
-  } */
+  & > .n-icon {
+    color: #d9d9d9;
+    cursor: pointer;
+    transition: all ease 200ms;
+
+    &:hover {
+      color: #fff;
+    }
+  }
 }
 </style>

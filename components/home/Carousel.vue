@@ -1,60 +1,65 @@
 <script setup>
-import Flicking from '@egjs/vue3-flicking';
-import { AutoPlay, Pagination } from '@egjs/flicking-plugins';
-import '@egjs/vue3-flicking/dist/flicking.css';
-import '@egjs/flicking-plugins/dist/flicking-plugins.css';
-import BgGuiLin from './images/image_35.png';
-import BgSuZhou from './images/image_12.png';
-import BgXinJiang from './images/image_27.png';
+import { NCarousel, NIcon } from 'naive-ui';
+import { LocationOnOutlined } from '@vicons/material';
+import BgHangzhou from './images/image_35.png';
+import BgJingdezhen from './images/image_47.png';
+import BgAI from './images/image_AI.png';
 
 const items = [
   {
-    city: 'GuiLin',
-    slogan: 'Authentic Travel Experiences',
+    city: 'Hangzhou',
+    desc: 'Pick tea  beside the West Lake',
     title: 'New Travel Paradigm',
-    image: BgGuiLin,
+    image: BgHangzhou,
+    slogan: 'Authentic Travel Experiences',
   },
   {
-    city: 'SuZhou',
-    slogan: 'Authentic Travel Experiences',
+    city: 'Jingdezhen',
+    desc: 'Make porcelain',
     title: 'New Travel Paradigm',
-    image: BgSuZhou,
+    image: BgJingdezhen,
+    slogan: 'Culture Based Experiences ',
   },
   {
-    city: 'XinJiang',
-    slogan: 'Authentic Travel Experiences',
     title: 'New Travel Paradigm',
-    image: BgXinJiang,
+    slogan: 'Your AI Assistant is always online for you ',
+    image: BgAI,
+    disableBook: true,
   },
 ];
-
-const plugins = [new AutoPlay({ duration: 3000, stopOnHover: true }), new Pagination({ type: 'bullet' })];
 </script>
 
 <template>
   <div class="carousel">
-    <Flicking :options="{ circular: true }" :plugins="plugins">
+    <NCarousel draggable autoplay>
       <div class="carousel-item" v-for="item in items" :key="item.city">
         <img class="carousel-bg" :src="item.image" />
         <div class="top-layer">
-          <p class="item-title">{{ item.title }}</p>
-          <p class="item-city">{{ item.city }}</p>
-          <p class="item-slogan">{{ item.slogan }}</p>
+          <div class="main-title">
+            <p class="title">{{ item.title }}</p>
+            <p class="slogan">{{ item.slogan }}</p>
+          </div>
 
-          <div class="book-btn" role="button">Book it Now!</div>
+          <div v-if="item.city" class="position">
+            <div class="city">
+              <NIcon size="30" :component="LocationOnOutlined" color="#fff" />
+              <span>{{ item.city }}</span>
+            </div>
+            <p v-if="item.desc" class="desc">{{ item.desc }}</p>
+          </div>
+
+          <div v-if="!item.disableBook" class="book-btn" role="button">Book it Now!</div>
         </div>
       </div>
-
-      <template #viewport>
-        <div class="flicking-pagination" />
-      </template>
-    </Flicking>
+    </NCarousel>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .carousel {
   width: 100%;
+  height: 634px;
+  overflow: hidden;
 
   &-item {
     width: 100%;
@@ -76,42 +81,58 @@ const plugins = [new AutoPlay({ duration: 3000, stopOnHover: true }), new Pagina
   height: 100%;
   right: 0;
   bottom: 0;
-  padding: 38px 62px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: flex-end;
 }
 
-.item {
-  &-title {
-    color: #000;
-    font-size: 50px;
-    font-weight: 700;
-    text-align: center;
-    width: 100%;
-  }
+.main-title {
+  margin-top: 164px;
+  text-align: center;
+}
 
-  &-city {
-    margin-top: 70px;
-    text-align: right;
-    color: #fff;
-    font-size: 70px;
-    font-weight: 800;
-    line-height: normal;
-  }
+.title {
+  color: #fff;
+  font-size: 50px;
+  font-weight: 700;
+}
 
-  &-slogan {
-    text-align: right;
+.slogan {
+  color: #fff;
+  font-size: 70px;
+  font-weight: 800;
+  line-height: normal;
+  margin-top: 20px;
+}
+
+.position {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+}
+
+.city {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  line-height: normal;
+
+  & > span {
     color: #fff;
-    font-size: 70px;
+    font-size: 30px;
     font-weight: 800;
-    line-height: normal;
   }
+}
+
+.desc {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #dfdfdf;
+  font-weight: 800;
+  text-decoration: underline;
 }
 
 .book-btn {
-  margin-top: 24px;
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,20 +146,6 @@ const plugins = [new AutoPlay({ duration: 3000, stopOnHover: true }), new Pagina
   transition: all ease 200ms;
 
   &:hover {
-    background-color: #fff;
-  }
-}
-
-.flicking-pagination {
-  &:deep(.flicking-pagination-bullet) {
-    width: 10px;
-    height: 10px;
-    margin: 0 6px;
-    background-color: rgba(#f8f8f8, 0.24);
-    transition: all 200ms ease;
-  }
-
-  &:deep(.flicking-pagination-bullet-active) {
     background-color: #fff;
   }
 }
