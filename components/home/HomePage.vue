@@ -44,7 +44,7 @@ import BgFooter from './images/Footer.png';
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding: 0 80px 300px;
+  padding: 0 80px 100px;
 }
 
 footer {
