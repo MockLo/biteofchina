@@ -1,4 +1,7 @@
-<script setup></script>
+<script setup>
+import BgExperiences from './images/experiences.png';
+import BgFooter from './images/Footer.png';
+</script>
 
 <template>
   <main class="home-page">
@@ -15,7 +18,12 @@
       <HomeFeaturedPackage />
       <HomeTopDestinations />
       <HomeInspiration />
+      <img :src="BgExperiences" />
     </div>
+
+    <footer>
+      <img :src="BgFooter" />
+    </footer>
   </main>
 </template>
 
@@ -36,6 +44,11 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding: 0 80px 400px;
+  padding: 0 80px 300px;
+}
+
+footer {
+  max-width: 2110px;
+  margin: 0 auto;
 }
 </style>
