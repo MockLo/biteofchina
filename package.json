@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@upstash/redis": "^1.34.3",
     "@vercel/speed-insights": "^1.1.0",
     "@vicons/material": "^0.12.0",
     "naive-ui": "^2.40.3",
