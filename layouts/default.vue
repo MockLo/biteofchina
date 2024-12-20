@@ -55,7 +55,6 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
-  min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
 }
@@ -82,6 +81,8 @@ select {
 
 #main-app {
   min-width: 1440px;
+  min-height: 100vh;
   margin: 0 auto;
+  display: flow-root;
 }
 </style>
