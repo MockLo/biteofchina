@@ -1,12 +1,23 @@
 <template>
   <main id="main-app">
-    <slot />
+    <NMessageProvider>
+      <NModalProvider>
+        <slot />
+      </NModalProvider>
+    </NMessageProvider>
     <SpeedInsights />
   </main>
 </template>
 
 <script setup>
 import { SpeedInsights } from '@vercel/speed-insights/nuxt';
+import { NMessageProvider, NModalProvider } from 'naive-ui';
+
+const route = useRoute();
+useHead({
+  title: route.meta.title,
+  meta: [{ property: 'og:title', content: `BiteOfChina - ${route.meta.title}` }],
+});
 </script>
 
 <style lang="scss">

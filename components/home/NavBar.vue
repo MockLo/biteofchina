@@ -1,6 +1,26 @@
 <script setup>
-import { NIcon, NTooltip } from 'naive-ui';
+import { NIcon, NDropdown, NConfigProvider } from 'naive-ui';
 import { LanguageOutlined, FileUploadOutlined, AccountCircleOutlined } from '@vicons/material';
+
+const router = useRouter();
+const submitOptions = [
+  {
+    label: 'Submit a product',
+    key: 'submit',
+    path: '/product/submit',
+  },
+  {
+    label: 'Manage products',
+    key: 'manage',
+    path: '/product/manage',
+  },
+];
+const handleSelect = key => {
+  if (!key) return;
+  const item = submitOptions.find(x => x.key === key);
+  if (!item) return;
+  router.push({ path: item.path });
+};
 </script>
 
 <template>
@@ -13,12 +33,11 @@ import { LanguageOutlined, FileUploadOutlined, AccountCircleOutlined } from '@vi
     </div>
     <div class="right-btns">
       <NIcon size="28" :component="LanguageOutlined" />
-      <NTooltip>
-        <template #trigger>
+      <NConfigProvider namespace="submit-dropdown">
+        <NDropdown :trigger="'click'" size="huge" :options="submitOptions" @select="handleSelect">
           <NIcon size="28" :component="FileUploadOutlined" />
-        </template>
-        Submit Your Product
-      </NTooltip>
+        </NDropdown>
+      </NConfigProvider>
       <NIcon size="28" :component="AccountCircleOutlined" />
     </div>
   </nav>
@@ -69,7 +88,12 @@ import { LanguageOutlined, FileUploadOutlined, AccountCircleOutlined } from '@vi
   align-items: center;
   gap: 15px;
 
-  & > .n-icon {
+  & > .n-config-provider {
+    display: flex;
+    align-items: center;
+  }
+
+  .n-icon {
     color: #d9d9d9;
     cursor: pointer;
     transition: all ease 200ms;

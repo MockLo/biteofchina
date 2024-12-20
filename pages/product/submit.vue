@@ -1,9 +1,9 @@
 <script setup>
 definePageMeta({
-  title: 'Homepage',
+  title: 'Submit Product',
 });
 </script>
 
 <template>
-  <HomePage />
+  <ProductsSubmitProduct />
 </template>
